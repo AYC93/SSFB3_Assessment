@@ -35,6 +35,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<div th:if="${setShowCaptcha} == true" th:object="${captcha}">
+						<p th:text="'What is ' + ${a} + ${op} + ${b} " + >
+						<input type="text" id="input" size="30" placeholder="Please type in the captcha answer">
+					</div>
+				</td>
+			</tr>
+			<tr>
 				<td></td>
 				<td>
 					<button type="submit">Login</button>

@@ -1,10 +1,5 @@
 package ibf2022.batch2.ssf.frontcontroller.model;
 
-import java.io.StringReader;
-
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
