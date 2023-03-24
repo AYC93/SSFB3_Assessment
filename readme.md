@@ -1,0 +1,1 @@
+AUTHICATE_API_URL=https://auth.chuklee.com/api/authenticate

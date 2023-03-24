@@ -1,20 +1,49 @@
 package ibf2022.batch2.ssf.frontcontroller.services;
 
-import java.util.Arrays;
+import java.io.StringReader;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import ibf2022.batch2.ssf.frontcontroller.respositories.AuthenticationRepository;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
+@Service
 public class AuthenticationService {
 
-	@Autowired
-	public AuthenticationRepository authRepo;
+	@Value("${assessment.autheticate.api.url}")
+	private String restAuthUrl;
 
 	// TODO: Task 2
 	// DO NOT CHANGE THE METHOD'S SIGNATURE
 	// Write the authentication method in here
-	public void authenticate(String username, String password) throws Exception {
+	public boolean authenticate(String username, String password) throws Exception {
+
+		JsonObject json = Json.createObjectBuilder()
+				.add("username", username)
+				.add("password", password)
+				.build();
+
+		RestTemplate template = new RestTemplate();
+
+		RequestEntity<String> req = RequestEntity.post(restAuthUrl)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+				.body(json.toString(), String.class);
+
+		ResponseEntity<String> resp = template.exchange(req, String.class);
+
+		JsonObject jsonResp = Json.createReader(new StringReader(resp.getBody())).readObject();
+		System.out.println(jsonResp.toString());
+		if (jsonResp.toString().contains("Authenticated")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// TODO: Task 3

@@ -24,23 +24,5 @@ public class Account {
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
 
-    public static JsonObject toJSON(String str) {
-        JsonReader reader = Json.createReader(new StringReader(str));
-        return reader.readObject();
-    }
 
-    public static Account create(String str) {
-        JsonObject json = toJSON(str);
-        Account acc = new Account();
-        acc.setUsername(json.getString("username"));
-        acc.setPassword(json.getString("password"));
-        return acc;
-    }
-
-    public JsonObject toJSON() {
-        return Json.createObjectBuilder()
-                .add("username", getUsername())
-                .add("password", getPassword())
-                .build();
-    }
 }
