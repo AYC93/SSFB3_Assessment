@@ -28,6 +28,7 @@ public class FrontController {
 	@PostMapping(path = "/login")
 	public String submitLogin(HttpSession sess, @Valid @ModelAttribute("account") Account account,
 			BindingResult result) throws Exception {
+			int count = 0;
 		if (result.hasErrors()) {
 			return "view0";
 		}
