@@ -11,15 +11,17 @@
 	<body>
 
 		<h2>Please Login</h2>
-
+		<container>
+		<form method="POST" action="/login" th:object="${account}">
 		<table>
 			<tr>
 				<td> 
 					<label for="username">Username:</label> 
 				</td>
 				<td>
+					<p style="color:red" th:errors="*{username}"></p>
 					<input type="text" id="username" size="30" 
-							placeholder="Please type in your username" >
+							placeholder="Please type in your username" th:field="*{username}">
 				</td>
 			</tr>
 			<tr>
@@ -27,17 +29,19 @@
 					<label for="password">Password:</label>
 				</td>
 				<td>
+					<p style="color:red" th:errors="*{password}"></p>
 					<input type="password" id="password" size="30" 
-							placeholder="Please type in your password">
+							placeholder="Please type in your password" th:field="*{password}">
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<button="submit">Login</button>
+					<button type="submit">Login</button>
 				</td>
 			</tr>
 		</table>
-		
+	</form>
+	</container>
 	</body>
 </html>

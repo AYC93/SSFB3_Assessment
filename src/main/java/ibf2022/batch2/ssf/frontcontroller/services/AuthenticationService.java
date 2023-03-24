@@ -1,6 +1,15 @@
 package ibf2022.batch2.ssf.frontcontroller.services;
 
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ibf2022.batch2.ssf.frontcontroller.respositories.AuthenticationRepository;
+
 public class AuthenticationService {
+
+	@Autowired
+	public AuthenticationRepository authRepo;
 
 	// TODO: Task 2
 	// DO NOT CHANGE THE METHOD'S SIGNATURE
